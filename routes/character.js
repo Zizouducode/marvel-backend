@@ -17,8 +17,9 @@ router.get("/characters", async (req, res) => {
       url = url + `&skip=${skip}`;
     }
     if (name) {
-      url = url + `&title=${name}`;
+      url = url + `&name=${name}`;
     }
+    // console.log("name=>", name);
     const response = await axios.get(url);
     return res.status(200).json(response.data);
   } catch (error) {
@@ -30,7 +31,7 @@ router.get("/characters", async (req, res) => {
 router.get("/character/:id", async (req, res) => {
   try {
     const { characterId } = req.query;
-    console.log("characterId=>", characterId);
+    // console.log("characterId=>", characterId);
     if (characterId) {
       const url = `https://lereacteur-marvel-api.herokuapp.com/character/${characterId}?apiKey=${process.env.MARVEL_API_KEY}`;
       const response = await axios.get(url);
